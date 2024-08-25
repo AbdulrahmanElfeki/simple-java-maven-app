@@ -9,5 +9,10 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+        stage('Deployment') { 
+            steps {
+                deploy adapter: [tomcat9(url:'http://52.54.249.228:8080/',credentialsId: "tomcat-cred")]
+            }
+        }
     }
 }
