@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Archive artifact'){
             steps{
-                sh 'jar cvf my-app.war target/*'
+                sh 'jar cvf target/my-app.war target/*.jar'
                 sh 'ls -la'
             }
         }
