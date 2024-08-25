@@ -17,6 +17,8 @@ pipeline {
         stage('Archive artifact'){
             steps{
                 sh 'jar cvf my-app.war .'
+            }
+        }
         stage('Deployment') { 
             steps{
                 deploy adapters: [tomcat9(url:'http://52.54.249.228:8080/',credentialsId:'tomcat-cred')]
@@ -25,4 +27,3 @@ pipeline {
         }
             }
         }
-    }
