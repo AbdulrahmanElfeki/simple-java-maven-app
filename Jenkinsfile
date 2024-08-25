@@ -25,7 +25,6 @@ pipeline {
             sh 'ssh ec2-user@10.1.1.63 "sudo /opt/apache-tomcat-9.0.93/bin/catalina.sh stop " '
             sh 'ssh ec2-user@10.1.1.63 "sudo /opt/apache-tomcat-9.0.93/bin/catalina.sh start " '
         }
-    }
             }
         }
     }
