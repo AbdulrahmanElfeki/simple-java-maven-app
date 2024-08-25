@@ -17,6 +17,7 @@ pipeline {
         stage('Archive artifact'){
             steps{
                 sh 'jar cvf my-app.war .'
+                sh 'ls -la'
             }
         }
         stage('Deployment') { 
