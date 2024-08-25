@@ -9,9 +9,20 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+        stage('test') {
+            steps {
+                sh "mvn surefire-report:report"
+            }
+        }
+        stage('Archive artifact'){
+            steps{
+                archiveArtifacts artifacts: 'target/*.war'
+            }
+        }
         stage('Deployment') { 
             steps {
-                deploy adapter: [tomcat9(url:'http://52.54.249.228:8080/',credentialsId: "tomcat-cred")]
+                deploy adapter: [tomcat9(url:'http://52.54.249.228:8080/',credentialsId: "tomcat-cred")],
+                        war: 'target/*.war'
             }
         }
     }
