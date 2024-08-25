@@ -20,10 +20,10 @@ pipeline {
             }
         }
         stage('Deployment') { 
-            sshagent(['ssh-key-tomcat']) {
-            sh 'scp jenkins/workspace/FirstMavenProject/my-app-1.0-SNAPSHOT.jar ec2-user@10.1.1.63:/opt/apache-tomcat-9.0.93/webapps/'
-            sh 'ssh ec2-user@10.1.1.63 "sudo /opt/apache-tomcat-9.0.93/bin/catalina.sh stop " '
-            sh 'ssh ec2-user@10.1.1.63 "sudo /opt/apache-tomcat-9.0.93/bin/catalina.sh start " '
+            steps{
+                deploy adapters: [tomcat9(url:'http://52.54.249.228:8080/',credentialsId:'tomcat-cred')]
+                war: 'target/*.war'
+            }
         }
             }
         }
